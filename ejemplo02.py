@@ -1,16 +1,16 @@
 import streamlit as st
 import pandas as pd
 
-#Titulo de aplicación
 st.title("Cargar y Procesar Archivo Excel con Condicionales")
 
-#Subir el archivo Excel
-archivo = st.file_uploader("Cargar Archivo Excel", type=["xlsx"])
+# Especifica la ruta completa al archivo
+ruta_archivo = "C:/Users/ADMIN/Downloads/datos.xlsx"
 
-if archivo is not None:
+# Verifica si el archivo existe
+if st.file_uploader is not None:
 
     #Leer el archivo Excel
-    df = pd.read_excel(archivo)
+    df = pd.read_excel(ruta_archivo)
     st.write("Datos cargados:")
     st.write(df)
 
@@ -26,10 +26,13 @@ if archivo is not None:
     #Aplicar la función a la columna Edad    
     df["Clasificación"] = df["Edad"].apply(clasificar_edad)
 
-    #Mostrar ek dataframe con la calsificación
+    #Mostrar el dataframe con la clasificación
     st.write("Datos Clasificados:")
     st.write(df)
 
     #Guardar el dataframe modificado a un nuevo archivo Excel
     df.to_excel("datos_clasificados.xlsx", index=False)
-    st.success("Archivo procesado y guardado como datos_clasificados.xlsx")   
+    st.success("Archivo procesado y guardado como datos_clasificados.xlsx")
+else:
+    st.warning("Por favor, carga un archivo Excel.")
+ 
