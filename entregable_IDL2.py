@@ -76,3 +76,17 @@ if st.button("Agregar Producto"):
         else:
             # Si todas las validaciones son correctas
             st.success("Felicidades, su producto se agregó correctamente.")
+            # Agregar el producto al DataFrame
+            productos_agregados_df = productos_agregados_df.append({
+                'Nombre del producto': nombre_producto,
+                'Precio del producto': precio_producto,
+                'Categorías del producto': categorias_producto,
+                'En venta': en_venta
+            }, ignore_index=True)
+
+# Mostrar los productos agregados
+st.header("Productos Agregados")
+if not productos_agregados_df.empty:
+    st.write(productos_agregados_df)
+else:
+    st.write("No se han agregado productos aún.")
