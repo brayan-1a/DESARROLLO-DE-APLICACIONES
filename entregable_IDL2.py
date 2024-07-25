@@ -5,6 +5,9 @@ import pandas as pd
 categorias_validas = ["Alimentos Procesados", "Condimentos", "Lácteos", "Bebidas", "Verduras",
     "Ingredientes de Cocina", "Desayunos"]
 
+# Crear un DataFrame vacío para almacenar productos agregados
+productos_agregados_df = pd.DataFrame(columns=['Nombre del producto', 'Precio del producto', 'Categorías del producto', 'En venta'])
+
 # Título de la aplicación
 st.title("Formulario de Productos - Confitería Dulcino")
 
@@ -50,6 +53,13 @@ if archivo is not None:
 
             # Si todas las validaciones son correctas
             st.success(f"Felicidades, su producto {nombre} se agregó correctamente.")
+            # Agregar el producto al DataFrame
+            productos_agregados_df = productos_agregados_df.append({
+                'Nombre del producto': nombre,
+                'Precio del producto': precio,
+                'Categorías del producto': categorias,
+                'En venta': en_venta
+            }, ignore_index=True)
 
 # Formulario de ingreso de datos
 st.header("Agregar Producto")
@@ -90,3 +100,4 @@ if not productos_agregados_df.empty:
     st.write(productos_agregados_df)
 else:
     st.write("No se han agregado productos aún.")
+
