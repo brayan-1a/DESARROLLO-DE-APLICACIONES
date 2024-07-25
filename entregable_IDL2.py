@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Definir las categorías válidas
-categorias_validas = ["Chocolates", "Caramelos", "Mashmelos", "Galletas", "Salados", "Gomas de mascar",
-    "Lácteos", "Bebidas", "Condimentos", "Ingredientes de Cocina", "Verduras",
+categorias_validas = ["Lácteos", "Bebidas", "Condimentos", "Ingredientes de Cocina", "Verduras",
     "Frutas", "Panadería", "Desayunos", "Postres", "Snacks", "Salsas y Aderezos", "Productos de Temporada"]
 
 # Título de la aplicación
