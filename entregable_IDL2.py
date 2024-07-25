@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 
 # Definir las categorías válidas
-categorias_validas = ["Lácteos", "Bebidas", "Condimentos", "Ingredientes de Cocina", "Verduras",
-    "Frutas", "Panadería", "Desayunos", "Postres", "Snacks", "Salsas y Aderezos", "Productos de Temporada"]
+categorias_validas = ["Alimentos Procesados", "Condimentos", "Lácteos", "Bebidas", "Verduras",
+    "Ingredientes de Cocina", "Desayunos"]
 
 # Título de la aplicación
 st.title("Formulario de Productos - Confitería Dulcino")
