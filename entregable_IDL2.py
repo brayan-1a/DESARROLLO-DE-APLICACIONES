@@ -9,7 +9,7 @@ categorias_validas = ["Alimentos Procesados", "Condimentos", "Lácteos", "Bebida
 productos_agregados_df = pd.DataFrame(columns=['Nombre del producto', 'Precio del producto', 'Categorías del producto', 'En venta'])
 
 # Título de la aplicación
-st.title("Formulario de Productos - Confitería Dulcino")
+st.title("Formulario de Productos")
 
 # Cargar el archivo Excel
 archivo = st.file_uploader("Cargar Archivo Excel", type=["xlsx"])
