@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import os
+import io
 
 # Título de la aplicación
 st.title("Cargar y Procesar Archivo Excel con Condicionales")
@@ -9,6 +9,7 @@ st.title("Cargar y Procesar Archivo Excel con Condicionales")
 archivo = st.file_uploader("Cargar Archivo Excel", type=["xlsx"])
 
 if archivo is not None:
+
     # Leer el archivo Excel
     df = pd.read_excel(archivo)
     st.write("Datos cargados:")
@@ -23,19 +24,26 @@ if archivo is not None:
         else:
             return "Adulto Mayor"
 
-    # Aplicar la función a la columna Edad
+    # Aplicar la función a la columna Edad    
     df["Clasificación"] = df["Edad"].apply(clasificar_edad)
 
     # Mostrar el dataframe con la clasificación
     st.write("Datos Clasificados:")
     st.write(df)
 
-    # Especificar la ruta donde se guardará el archivo modificado
-    save_path = r"C:\Users\ADMIN\Downloads\modificaciones\datos_clasificados.xlsx"
+    # Guardar el dataframe modificado a un nuevo archivo Excel en un buffer de memoria
+    buffer = io.BytesIO()
+    df.to_excel(buffer, index=False)
+    buffer.seek(0)
 
-    # Crear el directorio si no existe
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    # Mostrar mensaje de éxito
+    st.success("Archivo procesado y listo para descargar.")
 
-    # Guardar el dataframe modificado a un nuevo archivo Excel
-    df.to_excel(save_path, index=False)
-    st.success(f"Archivo procesado y guardado en {save_path}")
+    # Proporcionar un enlace para descargar el archivo guardado
+    st.download_button(
+        label="Descargar archivo procesado",
+        data=buffer,
+        file_name="datos_clasificados.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
