@@ -36,14 +36,19 @@ if archivo is not None:
 
     st.write(resultado)
 
-    #Guardar el resultado en un nuevo archivo Excel
+    #Guardar el resultado en un nuevo archivo CSV
     resultado_df = pd.DataFrame(list(total_ventas.items()), columns=['Producto', 'Total Ventas'])
-    resultado_df.to_excel("total_ventas.xlsx", index=False)
-    st.success("Archivo procesado y guardado como total_ventas.xlsx")
     
+    #convertir DataFrame a CSV
+    csv = resultado_df.to_csv(index=False).encode('utf-8')
+
+    #Mensaje de éxito
+    st.success("Archivo procesado")
+
+    #botón
     st.download_button(
-        label = "Descargar archivo Excel",
-        data=resultado_df,
-        file_name='Total_ventas.xlsx',
-        mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        label="Descargar archivo CSV",
+        data=csv,
+        file_name='Total_ventas.csv',
+        mime='text/csv'
     )
