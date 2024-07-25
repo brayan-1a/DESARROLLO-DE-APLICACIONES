@@ -54,12 +54,13 @@ if archivo is not None:
             # Si todas las validaciones son correctas
             st.success(f"Felicidades, su producto {nombre} se agregó correctamente.")
             # Agregar el producto al DataFrame
-            productos_agregados_df = productos_agregados_df.append({
+            nuevos_datos = pd.DataFrame([{
                 'Nombre del producto': nombre,
                 'Precio del producto': precio,
                 'Categorías del producto': categorias,
                 'En venta': en_venta
-            }, ignore_index=True)
+            }])
+            productos_agregados_df = pd.concat([productos_agregados_df, nuevos_datos], ignore_index=True)
 
 # Formulario de ingreso de datos
 st.header("Agregar Producto")
@@ -87,12 +88,13 @@ if st.button("Agregar Producto"):
             # Si todas las validaciones son correctas
             st.success("Felicidades, su producto se agregó correctamente.")
             # Agregar el producto al DataFrame
-            productos_agregados_df = productos_agregados_df.append({
+            nuevos_datos = pd.DataFrame([{
                 'Nombre del producto': nombre_producto,
                 'Precio del producto': precio_producto,
                 'Categorías del producto': categorias_producto,
                 'En venta': en_venta
-            }, ignore_index=True)
+            }])
+            productos_agregados_df = pd.concat([productos_agregados_df, nuevos_datos], ignore_index=True)
 
 # Mostrar los productos agregados
 st.header("Productos Agregados")
@@ -100,4 +102,5 @@ if not productos_agregados_df.empty:
     st.write(productos_agregados_df)
 else:
     st.write("No se han agregado productos aún.")
+
 
