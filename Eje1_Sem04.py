@@ -12,7 +12,7 @@ if archivo is not None:
     df = pd.read_excel(archivo)
     st.write("Datos Cargados:")
     st.write(df)
-    
+
     #Calcular el total de ventas por producto usando un bucle For
     st.header("Total de Ventas por Producto")
     total_ventas = {}
@@ -25,3 +25,13 @@ if archivo is not None:
             total_ventas[producto] = total
             
     st.write(total_ventas)
+    
+     #Mostrar el resultado de una tarea repetitiva usando un bucle While
+    st.header("Tarea Repetitiva con While")
+    contador = 0
+    resultado = []
+    while contador < 5:
+        resultado.append(f"Tarea repetitiva {contador + 1}")
+        contador += 1
+
+    st.write(resultado)
