@@ -24,7 +24,7 @@ elif option == 'Consultar Productos':
     productos = supabase.table('productos').select('*').execute()
     df_productos = pd.DataFrame(productos.data)
     st.write(df_productos)
-    
+
 elif option == 'Generar Factura':
     #Datos del cliente
     cliente_id = st.number_input("ID del Cliente", min_value=1)
@@ -36,4 +36,9 @@ elif option == 'Generar Factura':
     product_qty = {}
     for product in selected_products:
         qty = st.number_input(f"Cantidad de {product}", min_value=1)
-        product_qty[product] = qty    
+        product_qty[product] = qty
+    if st.button('Generar Factura'):
+        #Crear Factura
+        factura = supabase.table('facturas').insert({'cliente_id': cliente_id}).execute()
+        factura_id = factura.data[0]['id']
+    
