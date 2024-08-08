@@ -24,3 +24,16 @@ elif option == 'Consultar Productos':
     productos = supabase.table('productos').select('*').execute()
     df_productos = pd.DataFrame(productos.data)
     st.write(df_productos)
+    
+elif option == 'Generar Factura':
+    #Datos del cliente
+    cliente_id = st.number_input("ID del Cliente", min_value=1)
+    productos = supabase.table('productos').select('*').execute()
+    df_productos = pd.DataFrame(productos.data)
+
+    #Selección de productos y cantidades
+    selected_products = st.multiselect("Seleccione productos", df_productos['nombre'])
+    product_qty = {}
+    for product in selected_products:
+        qty = st.number_input(f"Cantidad de {product}", min_value=1)
+        product_qty[product] = qty    
